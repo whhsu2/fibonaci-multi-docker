@@ -12,4 +12,12 @@ after_success:
   - docker build -t morris754/multi-client ./client 
   - docker build -t morris754/multi-nginx ./nginx
   - docker build -t morris754/multi-server ./server
-  - docker build -t morris754/multi-tower ./worker
+  - docker build -t morris754/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin "$DOCKER_PASSWORD"
+  - docker push morris754/multi-client 
+  - docker push morris754/multi-nginx
+  - docker push morris754/multi-server
+  - docker push morris754/multi-worker
+
+
